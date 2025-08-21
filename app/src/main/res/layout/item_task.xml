@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zerobranch.layout.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:swipeDirection="right"
+    app:draggedItem="@id/drag_Item"
+    app:leftItem="@id/right_view"
+    android:layout_margin="10dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_rounded_red">
+        <!-- Background view (delete swipe background) -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/right_view"
+            android:layout_height="match_parent"
+            android:layout_width="90dp"
+            android:backgroundTint="@color/red"
+            android:src="@drawable/ic_delete"
+            android:scaleType="center"
+            android:layout_gravity="start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <!-- Foreground card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/drag_Item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded_white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/drag_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <View
+                android:id="@+id/verticalBorder"
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+
+                android:background="@drawable/bg_rounded_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/taskNameEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/task_name"
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/verticalBorder"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/taskTimeEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_discovery"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="@string/task_time"
+                android:textColor="@color/darker_gray"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/taskNameEt"
+                app:layout_constraintTop_toBottomOf="@id/taskNameEt" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_taskDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background= "@drawable/bg_rounded_blue"
+                android:minWidth="90dp"
+                android:minHeight="60dp"
+                android:paddingHorizontal="22dp"
+                android:paddingVertical="8dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_check"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</com.zerobranch.layout.SwipeLayout>

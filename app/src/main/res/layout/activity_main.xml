@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.task.MainActivity"
+    android:background="@color/mint_green">
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@color/blue"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/floatingButtonStyle"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_contact"
+        android:contentDescription="@string/fab_desc"
+        app:layout_anchor="@id/bottomNavigationButton"
+        app:borderWidth="3dp"
+        android:backgroundTint="@color/blue"
+        app:layout_anchorGravity="center_horizontal|top"
+        />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationButton"
+        app:menu="@menu/menu_bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemIconTint="@color/bottom_navigation_color"
+        app:itemTextColor="@color/bottom_navigation_color"
+        android:background="@color/white"
+        android:clipToOutline="true"
+        app:fabCradleMargin="10dp"
+        app:fabAnchorMode="cradle"
+        app:fabCradleRoundedCornerRadius="30dp"
+        app:fabCradleVerticalOffset="3dp"
+        app:fabAlignmentMode= "center"
+        app:fabAlignmentModeEndMargin ="12dp"
+        app:layout_anchorGravity="bottom"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TodoApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.TodoApp" parent="Base.Theme.TodoApp" />
+    <style name="floatingButtonStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="strokeWidth">10dp</item>
+        <item name="android:strokeColor">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+    <style name="title" parent="Base.Theme.TodoApp">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="titleMedium" parent="Base.Theme.TodoApp">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="titleSmall" parent="Base.Theme.TodoApp">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+</resources>
