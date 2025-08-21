@@ -6,19 +6,19 @@
     android:layout_height="wrap_content"
     app:swipeDirection="right"
     app:draggedItem="@id/drag_Item"
-    app:leftItem="@id/right_view"
+    app:leftItem="@id/delete_btn"
     android:layout_margin="10dp"
     >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/delete_btn"
+        android:id="@+id/delete_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_rounded_red">
         <!-- Background view (delete swipe background) -->
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/right_view"
+            android:id="@+id/delete_btn"
             android:layout_height="match_parent"
             android:layout_width="90dp"
             android:backgroundTint="@color/red"

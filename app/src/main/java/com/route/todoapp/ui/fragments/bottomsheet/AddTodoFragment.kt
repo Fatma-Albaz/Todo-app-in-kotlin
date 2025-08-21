@@ -6,16 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.TimePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.route.todoapp.adapter.TaskAdapter
+import com.route.todoapp.database.AppDatabase
 import com.route.todoapp.databinding.FragmentAddTodoBinding
-import com.route.todoapp.model.TaskDM
+import com.route.todoapp.database.entity.TaskDM
 import com.route.todoapp.repository.TaskRepository
 import java.util.Calendar
 
-class AddTodoFragment : BottomSheetDialogFragment() {
+class AddTodoFragment (var onAddTaskClickListener:()->Unit) : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentAddTodoBinding
     private val calendar: Calendar = Calendar.getInstance()
     override fun onCreateView(
@@ -54,17 +52,19 @@ class AddTodoFragment : BottomSheetDialogFragment() {
             if (!isValidData()) {
                 return@setOnClickListener;
             }
-            // Add task to recycler view list
-            TaskRepository.addTask(
-                TaskDM(
-                    binding.taskNameLayout.editText?.text.toString().trim(),
-                    binding.taskDescriptionLayout.editText?.text.toString().trim(),
-                    binding.selectDateBtn.text.toString().trim(),
-                    binding.selectTimeTv.text.toString().trim(),
-                    false
-                )
+            var taskDM = TaskDM(
+                id=0,
+                taskName =binding.taskNameLayout.editText?.text.toString().trim(),
+                taskDescription = binding.taskDescriptionLayout.editText?.text.toString().trim(),
+                taskDate = binding.selectDateBtn.text.toString().trim(),
+                taskTime = binding.selectTimeBtn.text.toString().trim(),
+                isDone = false,0
             )
-            //TODO: Notify the list change
+            val generatedID= AppDatabase.getInstance().getDao().insertTask(taskDM).toInt()
+            taskDM.generatedID = generatedID
+            AppDatabase.getInstance().getDao().updateTask(taskDM)
+            dismiss()
+            onAddTaskClickListener()
         }
         binding.selectTimeBtn.setOnClickListener{
             val picker = TimePickerDialog(requireContext(),

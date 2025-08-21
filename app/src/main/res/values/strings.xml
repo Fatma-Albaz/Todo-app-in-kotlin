@@ -12,4 +12,7 @@
     <string name="description">Description</string>
     <string name="default_time">10:01</string>
     <string name="default_date">1/1/2025</string>
+    <string name="edit_task">Edit task</string>
+    <string name="select_time">Select time</string>
+    <string name="select_date">Select date</string>
 </resources>

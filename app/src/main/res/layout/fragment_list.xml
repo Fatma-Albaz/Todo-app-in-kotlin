@@ -7,11 +7,7 @@
     tools:context=".ui.fragments.list.ListFragment"
     android:background="@color/mint_green">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:maxHeight="150dp"
-        android:background="@color/blue"/>
+    <include layout="@layout/blue_view"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecyclerView"
         android:layout_width="match_parent"

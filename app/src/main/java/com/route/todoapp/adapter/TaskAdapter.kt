@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.route.todoapp.R
 import com.route.todoapp.databinding.ItemTaskBinding
-import com.route.todoapp.model.TaskDM
+import com.route.todoapp.database.entity.TaskDM
 
-class TaskAdapter(private var listOfTasks: MutableList<TaskDM>) : Adapter<TaskAdapter.TaskViewHolder> () {
+class TaskAdapter(var listOfTasks: List<TaskDM>) : Adapter<TaskAdapter.TaskViewHolder> () {
 
     private lateinit var binding: ItemTaskBinding
 
@@ -25,13 +26,15 @@ class TaskAdapter(private var listOfTasks: MutableList<TaskDM>) : Adapter<TaskAd
     override fun getItemCount(): Int = listOfTasks.size
 
     interface ItemClickListener{
-        fun onTaskClickListener(task:TaskDM,position: Int)
-        fun onIsDoneClickListener(task:TaskDM,position: Int)
+        fun onTaskClickListener(task: TaskDM, position: Int)
+        fun onIsDoneClickListener(task: TaskDM, position: Int)
+        fun onDeleteButtonClickListener(task: TaskDM, position: Int)
     }
 
     var onClickListener: ItemClickListener? = null
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) : ViewHolder(binding.root){
+
         public fun bindItem (task: TaskDM){
             binding.taskNameEt.text = task.taskName
             binding.taskTimeEt.text = task.taskTime
@@ -41,26 +44,50 @@ class TaskAdapter(private var listOfTasks: MutableList<TaskDM>) : Adapter<TaskAd
                 binding.verticalBorder.setBackgroundColor(R.drawable.bg_rounded_green)
                 binding.taskNameEt.setTextColor(Color.parseColor("#FF61E757")) // green
             }
-           /*else {
-                binding.btnTaskDone.setImageResource(R.drawable.ic_check)
-                binding.btnTaskDone.setBackgroundColor(R.drawable.bg_rounded_blue)
-                binding.verticalBorder.setBackgroundColor(R.drawable.bg_rounded_blue)
-                binding.taskNameEt.setTextColor(Color.parseColor("#FF5D9CEC")) // blue
-            }*/
 
             binding.btnTaskDone.setOnClickListener{
-                onClickListener?.onIsDoneClickListener(task,adapterPosition)
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION){
+                    onClickListener?.onIsDoneClickListener(task,bindingAdapterPosition)
+                }
             }
-            binding.root.setOnClickListener{
-                onClickListener?.onTaskClickListener(task,adapterPosition)
+
+            binding.dragItemLayout.setOnClickListener{
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    onClickListener?.onTaskClickListener(task, bindingAdapterPosition)
+                }
+            }
+            binding.deleteBtn.setOnClickListener{
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION){
+                    onClickListener?.onDeleteButtonClickListener(task,bindingAdapterPosition)
+                }
             }
         }
     }
     public fun onItemUpdated(position: Int){
         notifyItemChanged(position)
     }
+    public fun updateList(tasks:List<TaskDM>){
+        listOfTasks = tasks
+        onListUpdated(listOfTasks)
+    }
     @SuppressLint("NotifyDataSetChanged")
-    public fun onListUpdated(){
+    public fun onTaskDeleted(tasks: List<TaskDM>, position: Int){
+        listOfTasks = tasks
+        notifyItemRemoved(position)
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    public fun onListUpdated(listOfTasks: List<TaskDM>){
         notifyDataSetChanged()
+        for (task in listOfTasks){
+            if (task.isDone){
+                binding.btnTaskDone.setImageResource(R.drawable.ic_done)
+                binding.btnTaskDone.setBackgroundColor(R.drawable.bg_rounded_white)
+                binding.verticalBorder.setBackgroundColor(R.drawable.bg_rounded_green)
+                binding.taskNameEt.setTextColor(Color.parseColor("#FF61E757")) // green
+            }
+        }
     }
 }

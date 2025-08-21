@@ -1,7 +1,6 @@
 package com.route.todoapp.repository
 
-import com.route.todoapp.adapter.TaskAdapter
-import com.route.todoapp.model.TaskDM
+import com.route.todoapp.database.entity.TaskDM
 
 class TaskRepository {
     companion object{
@@ -9,8 +8,8 @@ class TaskRepository {
         fun generateDummyList (): MutableList<TaskDM>{
             var localInstance: TaskDM
             for (i in 0..100){
-                localInstance = TaskDM("Task $i Name", "Task $i Description"
-                ,"$i/10/2025","11:11",false)
+                localInstance = TaskDM(i,"Task $i Name", "Task $i Description"
+                ,"$i/10/2025","11:11",false,0)
                 listOfTasks.add(localInstance)
             }
             return listOfTasks
