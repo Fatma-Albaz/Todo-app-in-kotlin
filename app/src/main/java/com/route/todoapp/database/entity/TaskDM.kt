@@ -3,6 +3,7 @@ package com.route.todoapp.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class TaskDM (
@@ -17,6 +18,4 @@ data class TaskDM (
     @ColumnInfo
     var taskTime: String,
     @ColumnInfo
-    var isDone: Boolean,
-    @ColumnInfo
-    var generatedID:Int)
+    var isDone: Boolean, ) : Serializable

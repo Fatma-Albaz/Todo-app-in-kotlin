@@ -11,10 +11,9 @@ import com.route.todoapp.R
 import com.route.todoapp.databinding.ItemTaskBinding
 import com.route.todoapp.database.entity.TaskDM
 
-class TaskAdapter(var listOfTasks: List<TaskDM>) : Adapter<TaskAdapter.TaskViewHolder> () {
+class TaskAdapter( var listOfTasks: List<TaskDM>) : Adapter<TaskAdapter.TaskViewHolder> () {
 
     private lateinit var binding: ItemTaskBinding
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return TaskViewHolder(binding)

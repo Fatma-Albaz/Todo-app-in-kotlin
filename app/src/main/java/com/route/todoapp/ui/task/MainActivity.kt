@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         listFragment= ListFragment {
             position,task->
             val intent = Intent(this, UpdateTaskActivity::class.java)
-            intent.putExtra(Utilities.updatedTaskPosition,task.generatedID)
+            intent.putExtra(Utilities.updatedTaskPosition,task)
             startActivity(intent)
         }
         showFragment(listFragment)

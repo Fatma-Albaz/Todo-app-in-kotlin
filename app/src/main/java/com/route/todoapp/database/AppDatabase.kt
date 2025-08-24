@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.route.todoapp.database.dao.TaskDao
 import com.route.todoapp.database.entity.TaskDM
 
-@Database(entities = [TaskDM::class], version = 1)
+@Database(entities = [TaskDM::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getDao(): TaskDao
 

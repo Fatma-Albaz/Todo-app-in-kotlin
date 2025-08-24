@@ -9,7 +9,7 @@ class TaskRepository {
             var localInstance: TaskDM
             for (i in 0..100){
                 localInstance = TaskDM(i,"Task $i Name", "Task $i Description"
-                ,"$i/10/2025","11:11",false,0)
+                ,"$i/10/2025","11:11",false)
                 listOfTasks.add(localInstance)
             }
             return listOfTasks

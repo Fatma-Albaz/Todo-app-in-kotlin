@@ -13,7 +13,7 @@ import com.route.todoapp.databinding.FragmentListBinding
 
 class ListFragment(var onTaskUpdateClickListener:(position:Int, taskDm:TaskDM)->Unit) : Fragment() {
     private lateinit var binding: FragmentListBinding
-    private var adapter: TaskAdapter = TaskAdapter(arrayListOf())
+    private var adapter= TaskAdapter(arrayListOf())
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +45,7 @@ class ListFragment(var onTaskUpdateClickListener:(position:Int, taskDm:TaskDM)->
         binding.taskRecyclerView.adapter = adapter
         adapter.onClickListener = object :TaskAdapter.ItemClickListener{
             override fun onTaskClickListener(task: TaskDM, position: Int) {
-                onTaskUpdateClickListener(task.generatedID, task)
+                onTaskUpdateClickListener(position, task)
             }
 
             override fun onIsDoneClickListener(task: TaskDM, position: Int) {

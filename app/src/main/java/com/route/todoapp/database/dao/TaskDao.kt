@@ -21,9 +21,6 @@ interface TaskDao {
     @Query("SELECT * FROM TaskDM")
     fun getAll(): List<TaskDM>
 
-    @Query("SELECT *FROM TaskDM WHERE generatedID LIKE :taskID")
-    fun getById(taskID:Int): TaskDM
-
     @Query("SELECT * FROM TaskDM WHERE taskDate LIKE :date ")
     fun findByDate(date: String): TaskDM
 }

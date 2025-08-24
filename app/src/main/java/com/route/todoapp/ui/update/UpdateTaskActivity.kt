@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import com.route.todoapp.adapter.TaskAdapter
 import com.route.todoapp.database.AppDatabase
 import com.route.todoapp.database.entity.TaskDM
 import com.route.todoapp.databinding.ActivityUpdateTaskBinding
@@ -19,11 +20,11 @@ class UpdateTaskActivity : Activity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val taskID= intent.getIntExtra(Utilities.updatedTaskPosition,-1)
-        if(taskID<0){
+        val task= intent.getSerializableExtra(Utilities.updatedTaskPosition) as TaskDM
+        if(task==null){
             finish()
         }
-        taskDM =  AppDatabase.getInstance().getDao().getById(taskID)
+        taskDM = task
         initListeners()
         initViews()
     }

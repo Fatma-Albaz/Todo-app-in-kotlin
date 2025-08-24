@@ -58,11 +58,9 @@ class AddTodoFragment (var onAddTaskClickListener:()->Unit) : BottomSheetDialogF
                 taskDescription = binding.taskDescriptionLayout.editText?.text.toString().trim(),
                 taskDate = binding.selectDateBtn.text.toString().trim(),
                 taskTime = binding.selectTimeBtn.text.toString().trim(),
-                isDone = false,0
+                isDone = false
             )
-            val generatedID= AppDatabase.getInstance().getDao().insertTask(taskDM).toInt()
-            taskDM.generatedID = generatedID
-            AppDatabase.getInstance().getDao().updateTask(taskDM)
+            AppDatabase.getInstance().getDao().insertTask(taskDM)
             dismiss()
             onAddTaskClickListener()
         }
